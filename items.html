@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Все предметы — HUNGER Guide</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/items.css">
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <a href="index.html" class="logo" style="text-decoration: none;">HUNGER<span>Guide</span></a>
+                    <div class="header-controls">
+                        <a href="index.html" class="btn-items-nav">← К квестам</a>
+                        <button class="theme-toggle" id="themeToggle" title="Переключить тему">🌙</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="container">
+            <div class="items-page">
+                <div class="items-page-header">
+                    <h1>📦 Все квестовые предметы</h1>
+                    <p class="subtitle">Собирай предметы заранее, чтобы не бегать лишний раз</p>
+                    <div class="items-stats">
+                        <span>Собрано: <strong id="collectedStats">0</strong> из <strong id="totalStats">0</strong></span>
+                        <button class="btn-clear-items" id="clearItems">Очистить все</button>
+                    </div>
+                </div>
+
+                <div class="items-grid" id="itemsGrid">
+                    <!-- Генерируется JS -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/items.js"></script>
+</body>
+</html>

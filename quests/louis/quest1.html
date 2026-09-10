@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вступление — Прапор | HUNGER Guide</title>
+    <!-- Подключаем общие стили и стили для страницы квеста -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/quest-page.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Шапка -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <a href="../../index.html" class="logo" style="text-decoration: none;">HUNGER<span>Guide</span></a>
+                    <div class="header-controls">
+                        <button class="theme-toggle" id="themeToggle" title="Переключить тему">
+                            🌙
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="quest-detail">
+            <!-- Назад -->
+            <a href="../../index.html" class="back-link">← Назад к списку квестов</a>
+
+            <!-- Заголовок квеста -->
+            <div class="quest-header">
+                <h1>Вступление</h1>
+                <div class="quest-meta">
+                    <span>🪖 Прапор</span>
+                    <span>📍 Лесная база</span>
+                    <span>⭐ Ранг: Лёгкий</span>
+                    <span>📅 Требуется: Уровень 5</span>
+                </div>
+            </div>
+
+            <!-- Описание из игры -->
+            <div class="quest-description">
+                <strong>«Боец, у нас проблемы с поставками. Нужно достать сигареты для ребят. 
+                Принеси мне 2 пачки «Мальборо» из старого магазина на базе. 
+                Будь осторожен, там шастают скавы.»</strong>
+                <span class="author">— Прапор</span>
+            </div>
+
+            <!-- Прохождение -->
+            <div class="section">
+                <h2>🧭 Прохождение</h2>
+                <ul class="guide-steps">
+                    <li>
+                        <strong>Шаг 1:</strong> Заходи на локацию <strong>«Лесная база»</strong> (Woods). 
+                        Лучше всего заходить со стороны южного КПП.
+                    </li>
+                    <li>
+                        <strong>Шаг 2:</strong> Двигайся к разрушенному магазину <strong>«У Коляна»</strong> 
+                        (отметка на карте ниже).
+                    </li>
+                    <li>
+                        <strong>Шаг 3:</strong> Внутри магазина на стойке и в подсобке лежат пачки сигарет. 
+                        Обычно их 2–3 штуки. Забери <strong>2 пачки «Мальборо»</strong>.
+                    </li>
+                    <li>
+                        <strong>Шаг 4:</strong> Выходи с локации через любой экстракт. 
+                        Не забудь сохранить сигареты в инвентаре.
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Карта -->
+            <div class="section">
+                <h2>🗺️ Карта маршрута</h2>
+                <div class="map-placeholder">
+                    <strong>📍 Схематичная карта</strong>
+                    <br>
+                    <span style="font-size: 14px;">[Здесь будет статичное изображение карты]</span>
+                    <div class="map-legend">
+                        <span><span class="dot-green">🟢</span> Старт</span>
+                        <span><span class="dot-red">🔴</span> Цель (магазин)</span>
+                        <span><span class="dot-blue">🔵</span> Экстракт</span>
+                    </div>
+                    <!-- Вставь свою карту -->
+                    <!-- <img src="../images/map-prapor-1.jpg" alt="Карта" style="width:100%; margin-top:15px; border-radius:12px;"> -->
+                </div>
+            </div>
+
+            <!-- Скриншоты - ОБНОВЛЕНО с data-атрибутами -->
+            <div class="section">
+                <h2>📸 Скриншоты <span style="font-size: 14px; color: var(--text-muted); font-weight: 400;">(кликните для увеличения)</span></h2>
+                <div class="media-grid" id="screenshotGrid">
+                    <div class="media-item" data-image="../images/screenshot-1.jpg" data-caption="📍 Стойка с сигаретами в магазине">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Crect fill='%232a2c2e' width='300' height='200'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' font-size='16'%3EСкриншот 1%3C/text%3E%3C/svg%3E" alt="Скриншот 1">
+                        <div class="caption">📍 Стойка с сигаретами в магазине</div>
+                        <span class="click-hint">🔍 Увеличить</span>
+                    </div>
+                    <div class="media-item" data-image="../images/screenshot-2.jpg" data-caption="🚪 Ближайший экстракт (UN Roadblock)">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Crect fill='%232a2c2e' width='300' height='200'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' font-size='16'%3EСкриншот 2%3C/text%3E%3C/svg%3E" alt="Скриншот 2">
+                        <div class="caption">🚪 Ближайший экстракт (UN Roadblock)</div>
+                        <span class="click-hint">🔍 Увеличить</span>
+                    </div>
+                    <div class="media-item" data-image="../images/screenshot-3.jpg" data-caption="🎯 Точка сбора добычи">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Crect fill='%232a2c2e' width='300' height='200'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' font-size='16'%3EСкриншот 3%3C/text%3E%3C/svg%3E" alt="Скриншот 3">
+                        <div class="caption">🎯 Точка сбора добычи</div>
+                        <span class="click-hint">🔍 Увеличить</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Советы -->
+            <div class="section">
+                <h2>💡 Советы</h2>
+                <div class="tip-box">
+                    <strong>Совет 1:</strong> Если не нашёл сигареты с первого раза — проверь ящики на втором этаже 
+                    или у кассы. Иногда они там спавнятся.
+                </div>
+                <div class="tip-box">
+                    <strong>Совет 2:</strong> Возьми с собой оружие для ближнего боя — в магазине тесно, 
+                    и скавы могут застать врасплох.
+                </div>
+                <div class="tip-box">
+                    <strong>Совет 3:</strong> Если ты новичок, лучше заходить в дневное время — так проще 
+                    ориентироваться и замечать врагов.
+                </div>
+            </div>
+
+            <!-- Действия -->
+            <div class="quest-actions">
+                <button class="btn btn-primary" id="completeQuestBtn">✅ Отметить выполненным</button>
+                <a href="../../index.html" class="btn btn-secondary">← На главную</a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Модальное окно для просмотра изображений -->
+    <div class="modal-overlay" id="imageModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">✕</button>
+            <button class="modal-nav prev" id="modalPrev">‹</button>
+            <button class="modal-nav next" id="modalNext">›</button>
+            <img id="modalImage" src="" alt="Увеличенное изображение">
+            <div class="modal-caption" id="modalCaption"></div>
+            <div class="modal-counter" id="modalCounter">1 / 1</div>
+        </div>
+    </div>
+
+    <script>
+        // ========================================
+        // ЛОГИКА ДЛЯ СТРАНИЦЫ КВЕСТА
+        // ========================================
+        
+        // Получаем ID квеста из URL
+        function getQuestIdFromUrl() {
+            const path = window.location.pathname;
+            const filename = path.split('/').pop();
+            const parts = filename.replace('.html', '').split('-');
+            if (parts.length === 2) {
+                return `${parts[0]}_${parts[1]}`;
+            }
+            return filename.replace('.html', '');
+        }
+
+        // Проверяем, выполнен ли квест
+        function isQuestCompleted(questId) {
+            try {
+                const data = localStorage.getItem('tarkov_quests');
+                if (data) {
+                    const completed = JSON.parse(data);
+                    return !!completed[questId];
+                }
+            } catch {}
+            return false;
+        }
+
+        // Сохраняем статус квеста
+        function saveQuestStatus(questId, isCompleted) {
+            try {
+                const data = localStorage.getItem('tarkov_quests');
+                const completed = data ? JSON.parse(data) : {};
+                if (isCompleted) {
+                    completed[questId] = true;
+                } else {
+                    delete completed[questId];
+                }
+                localStorage.setItem('tarkov_quests', JSON.stringify(completed));
+            } catch {}
+        }
+
+        // Обновляем кнопку
+        function updateButton(questId) {
+            const btn = document.getElementById('completeQuestBtn');
+            const isDone = isQuestCompleted(questId);
+            
+            if (isDone) {
+                btn.textContent = '✅ Выполнено';
+                btn.className = 'btn btn-success';
+            } else {
+                btn.textContent = '✅ Отметить выполненным';
+                btn.className = 'btn btn-primary';
+            }
+        }
+
+        // ========================================
+        // МОДАЛЬНОЕ ОКНО ДЛЯ ИЗОБРАЖЕНИЙ
+        // ========================================
+        let currentImages = [];
+        let currentIndex = 0;
+
+        function openModal(index) {
+            const modal = document.getElementById('imageModal');
+            const img = document.getElementById('modalImage');
+            const caption = document.getElementById('modalCaption');
+            const counter = document.getElementById('modalCounter');
+            
+            if (currentImages.length === 0) return;
+            
+            currentIndex = index;
+            const item = currentImages[currentIndex];
+            
+            img.src = item.image;
+            img.alt = item.caption;
+            caption.textContent = item.caption;
+            counter.textContent = `${currentIndex + 1} / ${currentImages.length}`;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function navigateModal(direction) {
+            const newIndex = currentIndex + direction;
+            if (newIndex < 0 || newIndex >= currentImages.length) return;
+            openModal(newIndex);
+        }
+
+        // Инициализация галереи
+        function initGallery() {
+            const items = document.querySelectorAll('.media-item');
+            currentImages = [];
+            
+            items.forEach((item, index) => {
+                const img = item.querySelector('img');
+                const caption = item.querySelector('.caption');
+                const imageUrl = item.dataset.image || img.src;
+                const imageCaption = item.dataset.caption || caption.textContent || 'Изображение';
+                
+                currentImages.push({
+                    image: imageUrl,
+                    caption: imageCaption
+                });
+                
+                item.addEventListener('click', () => {
+                    openModal(index);
+                });
+            });
+            
+            // Обработчики для модального окна
+            document.getElementById('modalClose').addEventListener('click', closeModal);
+            document.getElementById('modalPrev').addEventListener('click', () => navigateModal(-1));
+            document.getElementById('modalNext').addEventListener('click', () => navigateModal(1));
+            
+            // Закрытие по клику на фон
+            document.getElementById('imageModal').addEventListener('click', (e) => {
+                if (e.target === e.currentTarget) {
+                    closeModal();
+                }
+            });
+            
+            // Закрытие по Escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+                if (e.key === 'ArrowLeft') {
+                    navigateModal(-1);
+                }
+                if (e.key === 'ArrowRight') {
+                    navigateModal(1);
+                }
+            });
+        }
+
+        // ========================================
+        // ИНИЦИАЛИЗАЦИЯ
+        // ========================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const questId = getQuestIdFromUrl();
+            const btn = document.getElementById('completeQuestBtn');
+            
+            // Применяем тему
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+                themeToggle.addEventListener('click', () => {
+                    const currentTheme = document.documentElement.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                    themeToggle.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+                });
+            }
+            
+            // Обновляем кнопку
+            updateButton(questId);
+            
+            // Обработчик кнопки
+            btn.addEventListener('click', function() {
+                const isDone = isQuestCompleted(questId);
+                saveQuestStatus(questId, !isDone);
+                updateButton(questId);
+            });
+
+            // Инициализируем галерею
+            initGallery();
+        });
+    </script>
+</body>
+</html>

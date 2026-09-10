@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Making Dough — Eloise | HUNGER Guide</title>
+    <!-- Подключаем общие стили и стили для страницы квеста -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/quest-page.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Шапка -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <a href="../../index.html" class="logo" style="text-decoration: none;">HUNGER<span>Guide</span></a>
+                    <div class="header-controls">
+                        <button class="theme-toggle" id="themeToggle" title="Переключить тему">
+                            🌙
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="quest-detail">
+            <!-- Назад -->
+            <a href="../../index.html" class="back-link">← Назад к списку квестов</a>
+
+            <!-- Заголовок квеста -->
+            <div class="quest-header">
+                <h1>Making Dough</h1>
+                <div class="quest-meta">
+                    <span>👩 Eloise</span>
+                    <span>📍 Любая локация</span>
+                    <span>⭐ Сложность: Лёгкая</span>
+                </div>
+            </div>
+
+            <!-- Описание из игры -->
+            <div class="quest-description">
+                <strong>Eloise has asked me to find enough flour to provide bread for those on the
+                Ramparts. She's said that it shouldn't be too hard to find some that is not yet
+                spoiled. She's advised me to look around storehouses, sheds and settlements.
+                I am convinced I shall find enough if I can locate some flour sacks. Failing
+                that, I should be able to find some at Garnier's Windmill in Sarlat Farm.
+                She's given me a map to help me locate these places.</strong>
+            </div>
+
+            <!-- ======================================== -->
+            <!-- ТРЕКЕР ПРЕДМЕТОВ ДЛЯ ЭТОГО КВЕСТА (НОВОЕ) -->
+            <!-- ======================================== -->
+            <div class="section" id="itemsSection">
+                <h2>📦 Требуемые предметы</h2>
+                <div class="quest-items-tracker" id="questItemsTracker">
+                    <!-- Сюда будет вставлен список предметов из JS -->
+                </div>
+            </div>
+
+            <!-- Прохождение -->
+            <div class="section">
+                <h2>🧭 Прохождение</h2>
+                <ul class="guide-steps">
+                    <li>
+                        <strong>Шаг 1:</strong> Требуется найти 20 штук муки.
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Советы -->
+            <div class="section">
+                <h2>💡 Советы</h2>
+                <div class="tip-box">
+                    <strong>Совет 1:</strong> Рекомендуется идти на карту Jacques Bridge. Карта достаточно простая и сочетается с начальными квестами. Также там много мешков с мукой.
+                </div>
+            </div>
+
+            <!-- Действия -->
+            <div class="quest-actions">
+                <button class="btn btn-primary" id="completeQuestBtn">✅ Отметить выполненным</button>
+                <a href="../../index.html" class="btn btn-secondary">← На главную</a>
+            </div>
+        </main>
+    </div>
+    <script src="../../js/data.js"></script>
+    <script src="../../js/storage.js"></script>
+    <script>
+
+        // ========================================
+        // ДАННЫЕ ДЛЯ ЭТОГО КВЕСТА
+        // ========================================
+        const QUEST_ID = 'eloise_2';
+        const QUEST_ITEMS = [
+            { name: 'Flour', icon: '🌾', needed: 20 }
+        ];
+
+        // ========================================
+        // ОТРИСОВКА ТРЕКЕРА ПРЕДМЕТОВ
+        // ========================================
+        function renderQuestItems() {
+            const container = document.getElementById('questItemsTracker');
+            if (!container) return;
+            
+            const stored = getStoredItems();
+            
+            if (!QUEST_ITEMS || QUEST_ITEMS.length === 0) {
+                container.innerHTML = `<div class="empty-message">Для этого квеста не требуется предметов</div>`;
+                return;
+            }
+
+            let html = '<div class="quest-items-grid">';
+            
+            QUEST_ITEMS.forEach(item => {
+                const key = getItemUniqueKey(QUEST_ID, item.name);
+                const count = stored[key] || 0;
+                const isDone = count >= item.needed;
+                const progress = Math.min((count / item.needed) * 100, 100);
+                
+                html += `
+                    <div class="quest-item-card ${isDone ? 'complete' : ''}">
+                        <div class="quest-item-header">
+                            <span class="quest-item-icon">${item.icon || '📦'}</span>
+                            <span class="quest-item-name">${item.name}</span>
+                            <span class="quest-item-needed">${count}/${item.needed}</span>
+                        </div>
+                        <div class="quest-item-progress">
+                            <div class="quest-item-progress-fill" style="width: ${progress}%;"></div>
+                        </div>
+                        <div class="quest-item-controls">
+                            <button class="quest-item-btn minus" data-item="${item.name}">−</button>
+                            <span class="quest-item-count ${isDone ? 'done' : ''}">${count}</span>
+                            <button class="quest-item-btn plus" data-item="${item.name}">+</button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            container.innerHTML = html;
+            
+            // Навешиваем обработчики на кнопки (С УЧЁТОМ QUEST_ID)
+            container.querySelectorAll('.quest-item-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const itemName = btn.dataset.item;
+                    const isPlus = btn.classList.contains('plus');
+                    
+                    if (isPlus) {
+                        incrementItem(QUEST_ID, itemName);
+                    } else {
+                        decrementItem(QUEST_ID, itemName);
+                    }
+                    
+                    renderQuestItems();
+                    updateCompleteButton();
+                });
+            });
+        }
+
+        // ========================================
+        // ЛОГИКА ДЛЯ СТРАНИЦЫ КВЕСТА
+        // ========================================
+        
+        // Получаем ID квеста из URL
+        function getQuestIdFromUrl() {
+            const path = window.location.pathname;
+            const filename = path.split('/').pop();
+            const parts = filename.replace('.html', '').split('-');
+            if (parts.length === 2) {
+                return `${parts[0]}_${parts[1]}`;
+            }
+            return filename.replace('.html', '');
+        }
+
+        // Проверяем, собраны ли все предметы
+        function areAllItemsCollected() {
+            const stored = getStoredItems();
+            return QUEST_ITEMS.every(item => (stored[item.name] || 0) >= item.needed);
+        }
+
+        // Обновляем кнопку выполнения
+        function updateCompleteButton() {
+            const btn = document.getElementById('completeQuestBtn');
+            const isDone = isQuestCompleted(QUEST_ID);
+            const itemsDone = areAllItemsCollected();
+            
+            // Если предметы не собраны, но квест отмечен как выполненный — снимаем отметку
+            if (isDone && !itemsDone && QUEST_ITEMS.length > 0) {
+                saveQuestStatus(QUEST_ID, false);
+            }
+            
+            const finalStatus = isQuestCompleted(QUEST_ID);
+            
+            if (finalStatus) {
+                btn.textContent = '✅ Выполнено';
+                btn.className = 'btn btn-success';
+            } else if (itemsDone && QUEST_ITEMS.length > 0) {
+                btn.textContent = '✅ Все предметы собраны! Отметить выполненным';
+                btn.className = 'btn btn-primary';
+            } else {
+                btn.textContent = '✅ Отметить выполненным';
+                btn.className = 'btn btn-primary';
+            }
+        }
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            // Применяем тему
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+                themeToggle.addEventListener('click', () => {
+                    const currentTheme = document.documentElement.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                    themeToggle.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+                });
+            }
+            
+            // Рендерим предметы
+            renderQuestItems();
+            
+            // Обновляем кнопку
+            updateCompleteButton();
+            
+            // Обработчик кнопки выполнения
+            const btn = document.getElementById('completeQuestBtn');
+            btn.addEventListener('click', function() {
+                const isDone = isQuestCompleted(QUEST_ID);
+                saveQuestStatus(QUEST_ID, !isDone);
+                updateCompleteButton();
+            });
+        });
+    </script>
+</body>
+</html>

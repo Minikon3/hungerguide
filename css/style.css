@@ -1,0 +1,838 @@
+/* ========================================
+   БАЗОВЫЕ СТИЛИ И ТЕМНАЯ ТЕМА
+   ======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+}
+
+:root {
+    /* Светлая тема */
+    --bg-primary: #f0f2f5;
+    --bg-secondary: #ffffff;
+    --bg-card: #ffffff;
+    --bg-hover: #e8eaed;
+    --bg-active: #e3e8f0;
+    --text-primary: #1a1c1e;
+    --text-secondary: #4a4c4e;
+    --text-muted: #888a8c;
+    --border-color: #d0d2d5;
+    --border-accent: #6c7a3e;
+    --accent-color: #d6b17c;
+    --accent-dark: #b8925c;
+    --shadow: 0 2px 8px rgba(0,0,0,0.1);
+    --quest-completed: #4caf50;
+    --quest-active: #ff9800;
+    --transition: 0.3s ease;
+}
+
+[data-theme="dark"] {
+    --bg-primary: #141517;
+    --bg-secondary: #1e2022;
+    --bg-card: #242628;
+    --bg-hover: #2a2c2e;
+    --bg-active: #2e3328;
+    --text-primary: #e8e6e3;
+    --text-secondary: #b0b0b0;
+    --text-muted: #777777;
+    --border-color: #2f3133;
+    --border-accent: #6c7a3e;
+    --accent-color: #d6b17c;
+    --accent-dark: #b8925c;
+    --shadow: 0 2px 8px rgba(0,0,0,0.5);
+    --quest-completed: #66bb6a;
+    --quest-active: #ffa726;
+}
+
+body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background var(--transition), color var(--transition);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.app {
+    min-height: 100vh;
+}
+
+/* ========================================
+   ШАПКА (общая для всех страниц)
+   ======================================== */
+.header {
+    background: var(--bg-secondary);
+    border-bottom: 2px solid var(--border-accent);
+    padding: 15px 0;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow);
+    transition: background var(--transition);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--border-accent);
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.theme-toggle {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--text-primary);
+}
+
+.theme-toggle:hover {
+    transform: rotate(20deg);
+    border-color: var(--accent-color);
+}
+
+.stats {
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.stats strong {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+/* ========================================
+   ФИЛЬТРЫ (только для главной)
+   ======================================== */
+.filters {
+    background: var(--bg-secondary);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: end;
+    border: 1px solid var(--border-color);
+    transition: background var(--transition);
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+    min-width: 150px;
+}
+
+.filter-group label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.filter-group select,
+.filter-group input {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 14px;
+    transition: var(--transition);
+    outline: none;
+}
+
+.filter-group select:focus,
+.filter-group input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(214, 177, 124, 0.2);
+}
+
+.filter-group input::placeholder {
+    color: var(--text-muted);
+}
+
+/* ========================================
+   СЕТКА НПС (только для главной)
+   ======================================== */
+.npcs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.npc-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 20px 10px;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.npc-card:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-3px);
+}
+
+.npc-card.active {
+    border-color: var(--border-accent);
+    background: var(--bg-active);
+}
+
+.npc-avatar {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.npc-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.npc-faction {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.npc-count {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    background: var(--bg-primary);
+    padding: 2px 12px;
+    border-radius: 30px;
+    display: inline-block;
+}
+
+/* ========================================
+   СПИСОК КВЕСТОВ (только для главной)
+   ======================================== */
+.quests-section {
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid var(--border-color);
+    transition: background var(--transition);
+}
+
+.quests-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.quests-title {
+    font-size: 22px;
+    color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.quests-title small {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+.btn-clear-completed {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+    padding: 8px 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: var(--transition);
+}
+
+.btn-clear-completed:hover {
+    background: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+.quest-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.quest-item {
+    background: var(--bg-card);
+    padding: 14px 22px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transition);
+    border-left: 4px solid var(--border-accent);
+    cursor: pointer;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.quest-item:hover {
+    background: var(--bg-hover);
+    transform: translateX(6px);
+}
+
+.quest-item.completed {
+    border-left-color: var(--quest-completed);
+    opacity: 0.7;
+}
+
+.quest-item.completed .q-name {
+    text-decoration: line-through;
+}
+
+.quest-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+    min-width: 200px;
+}
+
+.quest-checkbox {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    accent-color: var(--quest-completed);
+    flex-shrink: 0;
+}
+
+.quest-checkbox:checked + .q-name {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.q-name {
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: 16px;
+}
+
+.q-npc {
+    font-size: 13px;
+    color: var(--text-muted);
+    background: var(--bg-primary);
+    padding: 2px 12px;
+    border-radius: 30px;
+    white-space: nowrap;
+}
+
+.q-description {
+    font-size: 14px;
+    color: var(--text-secondary);
+    flex: 1;
+    min-width: 150px;
+}
+
+.q-status-badge {
+    font-size: 12px;
+    padding: 4px 14px;
+    border-radius: 30px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.q-status-badge.active {
+    background: var(--quest-active);
+    color: #000;
+}
+
+.q-status-badge.completed {
+    background: var(--quest-completed);
+    color: #fff;
+}
+
+.empty-message {
+    color: var(--text-muted);
+    text-align: center;
+    padding: 40px;
+    font-style: italic;
+}
+
+/* ========================================
+   АДАПТИВ (общий)
+   ======================================== */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+    
+    .header-controls {
+        justify-content: space-between;
+    }
+    
+    .filters {
+        flex-direction: column;
+    }
+    
+    .filter-group {
+        min-width: 100%;
+    }
+    
+    .npcs-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 12px;
+    }
+    
+    .quest-item {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 16px;
+    }
+    
+    .quest-left {
+        min-width: auto;
+    }
+    
+    .quests-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .quests-title {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .npcs-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .stats {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+/* ========================================
+   КНОПКА "ВСЕ НПС"
+   ======================================== */
+.npc-controls {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.btn-select-all {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+    border-radius: 50px;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: var(--shadow);
+}
+
+.btn-select-all:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(214, 177, 124, 0.2);
+}
+
+.btn-select-all.active {
+    background: var(--bg-active);
+    border-color: var(--border-accent);
+    color: var(--accent-color);
+}
+
+.btn-select-all .btn-icon {
+    font-size: 20px;
+}
+
+.btn-select-all .btn-badge {
+    background: var(--border-accent);
+    color: var(--bg-primary);
+    border-radius: 30px;
+    padding: 2px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    min-width: 24px;
+    text-align: center;
+    transition: all var(--transition);
+}
+
+.btn-select-all.active .btn-badge {
+    background: var(--accent-color);
+}
+
+/* Адаптив для кнопки */
+@media (max-width: 480px) {
+    .btn-select-all {
+        padding: 10px 20px;
+        font-size: 14px;
+        gap: 8px;
+    }
+    
+    .btn-select-all .btn-icon {
+        font-size: 16px;
+    }
+}
+
+/* ========================================
+   ТРЕКЕР ПРЕДМЕТОВ НА ГЛАВНОЙ
+   ======================================== */
+.items-tracker {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    border: 1px solid var(--border-color);
+    display: none; /* Скрыт по умолчанию, показывается JS если есть предметы */
+}
+
+.items-tracker-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.items-tracker-header h3 {
+    color: var(--text-primary);
+    font-size: 18px;
+    margin: 0;
+}
+
+.items-tracker-header .items-progress {
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: var(--bg-primary);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--border-accent);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+.items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.items-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.items-list::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+    border-radius: 10px;
+}
+
+.items-list::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 10px;
+}
+
+.item-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    background: var(--bg-primary);
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.item-row .item-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.item-row .item-name {
+    flex: 1;
+    color: var(--text-primary);
+    font-weight: 500;
+    min-width: 80px;
+}
+
+.item-row .item-quest {
+    font-size: 12px;
+    color: var(--text-muted);
+    flex: 1;
+}
+
+.item-row .item-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.item-row .item-btn {
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 50%;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-size: 16px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-color);
+}
+
+.item-row .item-btn:hover {
+    background: var(--accent-color);
+    color: var(--bg-primary);
+    border-color: var(--accent-color);
+}
+
+.item-row .item-btn.minus:hover {
+    background: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+.item-row .item-count {
+    font-weight: 600;
+    min-width: 40px;
+    text-align: center;
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+.item-row.complete {
+    opacity: 0.5;
+}
+
+.item-row.complete .item-name {
+    text-decoration: line-through;
+}
+
+.item-row.more-link {
+    background: transparent;
+    padding: 4px;
+}
+
+.item-row.more-link a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 13px;
+    transition: var(--transition);
+}
+
+.item-row.more-link a:hover {
+    text-decoration: underline;
+    color: var(--accent-dark);
+}
+
+/* Кнопка навигации к предметам */
+.btn-items-nav {
+    padding: 6px 16px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+.btn-items-nav:hover {
+    border-color: var(--accent-color);
+    background: var(--bg-hover);
+}
+
+/* ========================================
+   КНОПКИ ПРЕДМЕТОВ В КВЕСТАХ
+   ======================================== */
+.quest-mid {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    min-width: 150px;
+}
+
+.quest-items-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin-top: 4px;
+}
+
+.quest-item-control {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-primary);
+    padding: 4px 10px 4px 8px;
+    border-radius: 20px;
+    font-size: 13px;
+    border: 1px solid var(--border-color);
+}
+
+.quest-item-control .item-icon {
+    font-size: 16px;
+}
+
+.quest-item-control .item-name-small {
+    color: var(--text-secondary);
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.quest-item-control .item-btn {
+    width: 22px;
+    height: 22px;
+    border: none;
+    border-radius: 50%;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-size: 14px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-color);
+    line-height: 1;
+}
+
+.quest-item-control .item-btn:hover {
+    background: var(--accent-color);
+    color: var(--bg-primary);
+    border-color: var(--accent-color);
+}
+
+.quest-item-control .item-btn.minus:hover {
+    background: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+.quest-item-control .item-count-small {
+    font-weight: 600;
+    min-width: 30px;
+    text-align: center;
+    color: var(--text-primary);
+    font-size: 13px;
+}
+
+.quest-item-control .item-count-small.done {
+    color: var(--quest-completed);
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .quest-mid {
+        min-width: auto;
+        width: 100%;
+    }
+    
+    .quest-items-controls {
+        gap: 6px;
+    }
+    
+    .quest-item-control {
+        font-size: 12px;
+        padding: 3px 8px 3px 6px;
+    }
+    
+    .quest-item-control .item-btn {
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+    }
+}
+
+/* ========================================
+   ЗАБЛОКИРОВАННЫЙ ЧЕКБОКС И ПОДСКАЗКА
+   ======================================== */
+
+.quest-checkbox:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.q-status-badge.blocked {
+    background: #ff9800;
+    color: #000;
+}
+
+.q-hint {
+    font-size: 12px;
+    color: #ff9800;
+    display: block;
+    margin-top: 4px;
+}
+
+/* Анимация для подсказки */
+.q-hint {
+    animation: pulseHint 2s ease-in-out infinite;
+}
+
+@keyframes pulseHint {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}

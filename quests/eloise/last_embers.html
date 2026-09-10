@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Last Embers — Eloise | HUNGER Guide</title>
+    <!-- Подключаем общие стили и стили для страницы квеста -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/quest-page.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Шапка -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <a href="../../index.html" class="logo" style="text-decoration: none;">HUNGER<span>Guide</span></a>
+                    <div class="header-controls">
+                        <button class="theme-toggle" id="themeToggle" title="Переключить тему">
+                            🌙
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="quest-detail">
+            <!-- Назад -->
+            <a href="../../index.html" class="back-link">← Назад к списку квестов</a>
+
+            <!-- Заголовок квеста -->
+            <div class="quest-header">
+                <h1>Last Embers</h1>
+                <div class="quest-meta">
+                    <span>👩 Eloise</span>
+                    <span>📍 Jacques Bridge</span>
+                    <span>⭐ Сложность: Лёгкая</span>
+                </div>
+            </div>
+
+            <!-- Описание из игры -->
+            <div class="quest-description">
+                <strong>Eloise has asked me to gather charcoal to keep the fires burning for those
+                on the Ramparts. With the cold settling in, she fears many may not make it
+                through the night without warmth. She's mentioned the smithy, old forges,
+                stoves and abandoned camps as good places to search. If all else fails, she
+                suggested that Cutter's Hamlet in Sombre Forest will have large amounts
+                of charcoal.</strong>
+            </div>
+
+            <!-- ======================================== -->
+            <!-- ТРЕКЕР ПРЕДМЕТОВ ДЛЯ ЭТОГО КВЕСТА -->
+            <!-- ======================================== -->
+            <div class="section" id="itemsSection">
+                <h2>📦 Требуемые предметы</h2>
+                <div class="quest-items-tracker" id="questItemsTracker">
+                    <!-- Сюда будет вставлен список предметов из JS -->
+                </div>
+            </div>
+
+            <!-- Прохождение -->
+            <div class="section">
+                <h2>🧭 Прохождение</h2>
+                <ul class="guide-steps">
+                    <li>
+                        <strong>Шаг 1:</strong> Нужно собрать 15 углей. Они находятся в печах или в сгоревшей деревне.
+                    </li>
+                    <li>
+                        <strong>Шаг 2:</strong> Много угля можно найти в сгоревшей деревне <strong>Cutter's Hamlet</strong>.
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Карта -->
+            <div class="section">
+                <h2>🗺️ Карта маршрута</h2>
+                <div class="map-placeholder">
+                    <strong>📍 Где искать уголь</strong>
+                    <br>
+                    <div class="map-legend">
+                        <span><span class="dot-red">🔴</span> Цель</span>
+                    </div>
+                    <img src="pics/last_embers/map1.jpg" alt="Карта" style="width:100%; margin-top:15px; border-radius:12px;">
+                </div>
+            </div>
+
+            <!-- Скриншоты -->
+            <div class="section">
+                <h2>📸 Скриншоты</h2>
+                <div class="media-grid">
+                    <div class="media-item">
+                        <img src="pics/last_embers/pic1.jpg" alt="Куча угля">
+                        <div class="caption">🪨 Пример кучи, где может быть уголь</div>
+                        <span class="click-hint">🔍 Увеличить</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Действия -->
+            <div class="quest-actions">
+                <button class="btn btn-primary" id="completeQuestBtn">✅ Отметить выполненным</button>
+                <a href="../../index.html" class="btn btn-secondary">← На главную</a>
+            </div>
+
+            <!-- Подсказка о незавершённых предметах -->
+            <div class="quest-hint" id="questHint" style="display: none; margin-top: 12px; padding: 12px 18px; background: #ff9800; color: #000; border-radius: 8px; font-size: 14px; text-align: center;">
+                ⚠️ Сначала соберите все предметы для этого квеста!
+            </div>
+        </main>
+    </div>
+
+    <!-- Модальное окно для просмотра изображений -->
+    <div class="modal-overlay" id="imageModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">✕</button>
+            <button class="modal-nav prev" id="modalPrev">‹</button>
+            <button class="modal-nav next" id="modalNext">›</button>
+            <img id="modalImage" src="" alt="Увеличенное изображение">
+            <div class="modal-caption" id="modalCaption"></div>
+            <div class="modal-counter" id="modalCounter">1 / 1</div>
+        </div>
+    </div>
+
+    <!-- Подключаем data.js и storage.js -->
+    <script src="../../js/data.js"></script>
+    <script src="../../js/storage.js"></script>
+
+    <script>
+        // ========================================
+        // ID КВЕСТА (ЗАХАРДКОЖЕН)
+        // ========================================
+        const QUEST_ID = 'eloise_4';
+
+        // ========================================
+        // ДАННЫЕ ДЛЯ ЭТОГО КВЕСТА
+        // ========================================
+        const QUEST_ITEMS = [
+            { name: 'Charcoal', icon: '🪨', needed: 15 }
+        ];
+
+        // ========================================
+        // ФУНКЦИИ ДЛЯ РАБОТЫ С ПРЕДМЕТАМИ (ОБЁРТКИ)
+        // ========================================
+        function getItemCountForQuest(itemName) {
+            return getItemCount(QUEST_ID, itemName);
+        }
+
+        function incrementItemForQuest(itemName) {
+            return incrementItem(QUEST_ID, itemName);
+        }
+
+        function decrementItemForQuest(itemName) {
+            return decrementItem(QUEST_ID, itemName);
+        }
+
+        function getItemUniqueKeyForQuest(itemName) {
+            return getItemUniqueKey(QUEST_ID, itemName);
+        }
+
+        // ========================================
+        // ОТРИСОВКА ТРЕКЕРА ПРЕДМЕТОВ
+        // ========================================
+        function renderQuestItems() {
+            const container = document.getElementById('questItemsTracker');
+            if (!container) return;
+            
+            const stored = getStoredItems();
+            
+            if (!QUEST_ITEMS || QUEST_ITEMS.length === 0) {
+                container.innerHTML = `<div class="empty-message">Для этого квеста не требуется предметов</div>`;
+                return;
+            }
+
+            let html = '<div class="quest-items-grid">';
+            
+            QUEST_ITEMS.forEach(item => {
+                const key = getItemUniqueKeyForQuest(item.name);
+                const count = stored[key] || 0;
+                const isDone = count >= item.needed;
+                const progress = Math.min((count / item.needed) * 100, 100);
+                
+                html += `
+                    <div class="quest-item-card ${isDone ? 'complete' : ''}">
+                        <div class="quest-item-header">
+                            <span class="quest-item-icon">${item.icon || '📦'}</span>
+                            <span class="quest-item-name">${item.name}</span>
+                            <span class="quest-item-needed">${count}/${item.needed}</span>
+                        </div>
+                        <div class="quest-item-progress">
+                            <div class="quest-item-progress-fill" style="width: ${progress}%;"></div>
+                        </div>
+                        <div class="quest-item-controls">
+                            <button class="quest-item-btn minus" data-item="${item.name}">−</button>
+                            <span class="quest-item-count ${isDone ? 'done' : ''}">${count}</span>
+                            <button class="quest-item-btn plus" data-item="${item.name}">+</button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            container.innerHTML = html;
+            
+            // Навешиваем обработчики на кнопки
+            container.querySelectorAll('.quest-item-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const itemName = btn.dataset.item;
+                    const isPlus = btn.classList.contains('plus');
+                    
+                    if (isPlus) {
+                        incrementItemForQuest(itemName);
+                    } else {
+                        decrementItemForQuest(itemName);
+                    }
+                    
+                    renderQuestItems();
+                    updateCompleteButton();
+                });
+            });
+        }
+
+        // ========================================
+        // ПРОВЕРКА СОБРАНЫ ЛИ ВСЕ ПРЕДМЕТЫ
+        // ========================================
+        function areAllItemsCollected() {
+            if (!QUEST_ITEMS || QUEST_ITEMS.length === 0) return true;
+            const stored = getStoredItems();
+            return QUEST_ITEMS.every(item => {
+                const key = getItemUniqueKeyForQuest(item.name);
+                return (stored[key] || 0) >= item.needed;
+            });
+        }
+
+        // ========================================
+        // ОБНОВЛЕНИЕ КНОПКИ ВЫПОЛНЕНИЯ (С ПОДСКАЗКОЙ)
+        // ========================================
+        function updateCompleteButton() {
+            const btn = document.getElementById('completeQuestBtn');
+            const hint = document.getElementById('questHint');
+            const isDone = isQuestCompleted(QUEST_ID);
+            const itemsDone = areAllItemsCollected();
+            const hasItems = QUEST_ITEMS && QUEST_ITEMS.length > 0;
+            
+            // Если есть предметы и они не собраны
+            if (hasItems && !itemsDone) {
+                // Кнопка неактивна
+                btn.disabled = true;
+                btn.style.opacity = '0.5';
+                btn.style.cursor = 'not-allowed';
+                btn.textContent = '⛔ Сначала соберите предметы';
+                btn.className = 'btn btn-secondary';
+                
+                // Показываем подсказку
+                hint.style.display = 'block';
+                
+                // Если квест был отмечен выполненным — снимаем отметку
+                if (isDone) {
+                    saveQuestStatus(QUEST_ID, false);
+                }
+                return;
+            }
+            
+            // Если всё собрано или нет предметов — кнопка активна
+            btn.disabled = false;
+            btn.style.opacity = '1';
+            btn.style.cursor = 'pointer';
+            hint.style.display = 'none';
+            
+            if (isDone) {
+                btn.textContent = '✅ Выполнено';
+                btn.className = 'btn btn-success';
+            } else if (itemsDone && hasItems) {
+                btn.textContent = '✅ Все предметы собраны! Отметить выполненным';
+                btn.className = 'btn btn-primary';
+            } else {
+                btn.textContent = '✅ Отметить выполненным';
+                btn.className = 'btn btn-primary';
+            }
+        }
+
+        // ========================================
+        // ГАЛЕРЕЯ ИЗОБРАЖЕНИЙ
+        // ========================================
+        let images = [];
+        let currentIndex = 0;
+
+        function openModal(index) {
+            const modal = document.getElementById('imageModal');
+            const img = document.getElementById('modalImage');
+            const caption = document.getElementById('modalCaption');
+            const counter = document.getElementById('modalCounter');
+            
+            currentIndex = index;
+            img.src = images[currentIndex].src;
+            img.alt = images[currentIndex].alt;
+            caption.textContent = images[currentIndex].caption;
+            counter.textContent = `${currentIndex + 1} / ${images.length}`;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function navigate(direction) {
+            const newIndex = currentIndex + direction;
+            if (newIndex >= 0 && newIndex < images.length) {
+                openModal(newIndex);
+            }
+        }
+
+        function initGallery() {
+            document.querySelectorAll('.media-item').forEach((item, index) => {
+                const img = item.querySelector('img');
+                const caption = item.querySelector('.caption');
+                
+                images.push({
+                    src: img.src,
+                    alt: img.alt,
+                    caption: caption.textContent
+                });
+                
+                item.addEventListener('click', () => openModal(index));
+            });
+
+            document.getElementById('modalClose').addEventListener('click', closeModal);
+            document.getElementById('modalPrev').addEventListener('click', () => navigate(-1));
+            document.getElementById('modalNext').addEventListener('click', () => navigate(1));
+            document.getElementById('imageModal').addEventListener('click', (e) => {
+                if (e.target === e.currentTarget) closeModal();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowLeft') navigate(-1);
+                if (e.key === 'ArrowRight') navigate(1);
+            });
+        }
+
+        // ========================================
+        // ИНИЦИАЛИЗАЦИЯ
+        // ========================================
+        document.addEventListener('DOMContentLoaded', function() {
+            // Применяем тему
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+                themeToggle.addEventListener('click', () => {
+                    const currentTheme = document.documentElement.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                    themeToggle.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+                });
+            }
+            
+            renderQuestItems();
+            updateCompleteButton();
+            
+            const btn = document.getElementById('completeQuestBtn');
+            btn.addEventListener('click', function() {
+                // Проверяем, собраны ли предметы (на случай, если кнопка вдруг стала активна)
+                const itemsDone = areAllItemsCollected();
+                const hasItems = QUEST_ITEMS && QUEST_ITEMS.length > 0;
+                
+                if (hasItems && !itemsDone) {
+                    // Это не должно произойти, но на всякий случай
+                    updateCompleteButton();
+                    return;
+                }
+                
+                const isDone = isQuestCompleted(QUEST_ID);
+                saveQuestStatus(QUEST_ID, !isDone);
+                updateCompleteButton();
+            });
+
+            initGallery();
+        });
+    </script>
+</body>
+</html>

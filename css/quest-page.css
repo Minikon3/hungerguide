@@ -1,0 +1,676 @@
+/* ========================================
+   СТИЛИ ДЛЯ СТРАНИЦЫ КВЕСТА
+   ======================================== */
+
+.quest-detail {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+}
+
+/* Кнопка "Назад" */
+.quest-detail .back-link {
+    display: inline-block;
+    margin-bottom: 30px;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    font-size: 16px;
+}
+
+.quest-detail .back-link:hover {
+    color: var(--accent-dark);
+    transform: translateX(-5px);
+}
+
+/* Заголовок квеста */
+.quest-detail .quest-header {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    border-left: 6px solid var(--border-accent);
+    box-shadow: var(--shadow);
+}
+
+.quest-detail .quest-header h1 {
+    font-size: 32px;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.quest-detail .quest-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.quest-detail .quest-meta span {
+    background: var(--bg-primary);
+    padding: 5px 16px;
+    border-radius: 30px;
+    border: 1px solid var(--border-color);
+}
+
+/* Описание из игры */
+.quest-detail .quest-description {
+    background: var(--bg-card);
+    padding: 25px 30px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    border-left: 6px solid var(--accent-color);
+    font-style: italic;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    box-shadow: var(--shadow);
+}
+
+.quest-detail .quest-description strong {
+    color: var(--text-primary);
+}
+
+.quest-detail .quest-description .author {
+    color: var(--text-muted);
+    font-size: 14px;
+    font-style: normal;
+    display: block;
+    margin-top: 8px;
+}
+
+/* Секции */
+.quest-detail .section {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    box-shadow: var(--shadow);
+}
+
+.quest-detail .section h2 {
+    color: var(--accent-color);
+    font-size: 24px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Шаги прохождения */
+.quest-detail .guide-steps {
+    list-style: none;
+    padding: 0;
+    counter-reset: step;
+}
+
+.quest-detail .guide-steps li {
+    padding: 15px 20px 15px 60px;
+    margin-bottom: 12px;
+    background: var(--bg-primary);
+    border-radius: 10px;
+    position: relative;
+    line-height: 1.6;
+    border: 1px solid var(--border-color);
+    counter-increment: step;
+}
+
+.quest-detail .guide-steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--accent-color);
+    color: var(--bg-primary);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.quest-detail .guide-steps li strong {
+    color: var(--accent-color);
+}
+
+/* Сетка медиа - ОБНОВЛЕНО для кликабельности */
+.quest-detail .media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.quest-detail .media-grid .media-item {
+    background: var(--bg-primary);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+}
+
+.quest-detail .media-grid .media-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+    border-color: var(--accent-color);
+}
+
+.quest-detail .media-grid .media-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    background: var(--bg-secondary);
+    transition: var(--transition);
+}
+
+.quest-detail .media-grid .media-item:hover img {
+    filter: brightness(0.9);
+}
+
+.quest-detail .media-grid .media-item .caption {
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-align: center;
+    background: var(--bg-card);
+    transition: var(--transition);
+}
+
+.quest-detail .media-grid .media-item:hover .caption {
+    color: var(--text-primary);
+}
+
+/* Индикатор кликабельности */
+.quest-detail .media-grid .media-item .click-hint {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    opacity: 0;
+    transition: var(--transition);
+    pointer-events: none;
+}
+
+.quest-detail .media-grid .media-item:hover .click-hint {
+    opacity: 1;
+}
+
+/* Карта */
+.quest-detail .map-placeholder {
+    background: var(--bg-primary);
+    border: 2px dashed var(--border-color);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    color: var(--text-muted);
+    margin-top: 20px;
+}
+
+.quest-detail .map-placeholder strong {
+    color: var(--accent-color);
+}
+
+.quest-detail .map-legend {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+    font-size: 14px;
+}
+
+.quest-detail .map-legend span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.quest-detail .map-legend .dot-green {
+    color: #4caf50;
+}
+.quest-detail .map-legend .dot-red {
+    color: #f44336;
+}
+.quest-detail .map-legend .dot-blue {
+    color: #2196f3;
+}
+
+/* Советы */
+.quest-detail .tip-box {
+    background: var(--bg-primary);
+    border-left: 4px solid var(--quest-active);
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-top: 12px;
+    color: var(--text-secondary);
+}
+
+.quest-detail .tip-box:first-of-type {
+    margin-top: 0;
+}
+
+.quest-detail .tip-box strong {
+    color: var(--quest-active);
+}
+
+/* Кнопки действий */
+.quest-detail .quest-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.quest-detail .btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.quest-detail .btn-primary {
+    background: var(--accent-color);
+    color: var(--bg-primary);
+}
+
+.quest-detail .btn-primary:hover {
+    background: var(--accent-dark);
+    transform: translateY(-2px);
+}
+
+.quest-detail .btn-secondary {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.quest-detail .btn-secondary:hover {
+    background: var(--bg-hover);
+}
+
+.quest-detail .btn-success {
+    background: var(--quest-completed);
+    color: #fff;
+}
+
+.quest-detail .btn-success:hover {
+    opacity: 0.8;
+    transform: translateY(-2px);
+}
+
+/* ========================================
+   МОДАЛЬНОЕ ОКНО ДЛЯ ПРОСМОТРА ИЗОБРАЖЕНИЙ
+   ======================================== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-overlay .modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90vh;
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+    animation: scaleIn 0.3s ease;
+}
+
+.modal-overlay .modal-content img {
+    max-width: 100%;
+    max-height: 80vh;
+    display: block;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+.modal-overlay .modal-content .modal-caption {
+    margin-top: 12px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 15px;
+    padding: 0 10px;
+}
+
+.modal-overlay .modal-close {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 24px;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-overlay .modal-close:hover {
+    transform: rotate(90deg);
+    background: #dc3545;
+    color: white;
+}
+
+.modal-overlay .modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+.modal-overlay .modal-nav:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.modal-overlay .modal-nav.prev {
+    left: -70px;
+}
+
+.modal-overlay .modal-nav.next {
+    right: -70px;
+}
+
+.modal-overlay .modal-counter {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-muted);
+    font-size: 14px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 4px 16px;
+    border-radius: 20px;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Адаптив для модального окна */
+@media (max-width: 768px) {
+    .modal-overlay .modal-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    
+    .modal-overlay .modal-nav.prev {
+        left: 10px;
+    }
+    
+    .modal-overlay .modal-nav.next {
+        right: 10px;
+    }
+    
+    .modal-overlay .modal-content {
+        padding: 12px;
+        max-width: 95%;
+    }
+    
+    .modal-overlay .modal-close {
+        top: -10px;
+        right: -10px;
+        width: 35px;
+        height: 35px;
+        font-size: 20px;
+    }
+    
+    .quest-detail .quest-header h1 {
+        font-size: 24px;
+    }
+    
+    .quest-detail .guide-steps li {
+        padding: 12px 15px 12px 50px;
+    }
+    
+    .quest-detail .guide-steps li::before {
+        width: 25px;
+        height: 25px;
+        font-size: 12px;
+        left: 12px;
+    }
+    
+    .quest-detail .section {
+        padding: 20px;
+    }
+    
+    .quest-detail .media-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .quest-detail .quest-header {
+        padding: 20px;
+    }
+    
+    .quest-detail .quest-header h1 {
+        font-size: 20px;
+    }
+    
+    .quest-detail .quest-meta {
+        gap: 8px;
+        font-size: 12px;
+    }
+    
+    .quest-detail .quest-meta span {
+        padding: 3px 12px;
+    }
+    
+    .quest-detail .quest-description {
+        padding: 18px 20px;
+    }
+    
+    .quest-detail .quest-actions {
+        flex-direction: column;
+    }
+    
+    .quest-detail .quest-actions .btn {
+        justify-content: center;
+    }
+}
+
+/* ========================================
+   ТРЕКЕР ПРЕДМЕТОВ НА СТРАНИЦЕ КВЕСТА
+   ======================================== */
+
+.quest-items-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 10px;
+}
+
+.quest-item-card {
+    background: var(--bg-primary);
+    border-radius: 12px;
+    padding: 16px 20px;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.quest-item-card:hover {
+    border-color: var(--accent-color);
+}
+
+.quest-item-card.complete {
+    border-left: 4px solid var(--quest-completed);
+    opacity: 0.8;
+}
+
+.quest-item-card .quest-item-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.quest-item-card .quest-item-icon {
+    font-size: 24px;
+}
+
+.quest-item-card .quest-item-name {
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: 16px;
+    flex: 1;
+}
+
+.quest-item-card .quest-item-needed {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.quest-item-card .quest-item-progress {
+    width: 100%;
+    height: 6px;
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.quest-item-card .quest-item-progress-fill {
+    height: 100%;
+    background: var(--border-accent);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+.quest-item-card .quest-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.quest-item-card .quest-item-btn {
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-size: 18px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quest-item-card .quest-item-btn:hover {
+    background: var(--accent-color);
+    color: var(--bg-primary);
+    border-color: var(--accent-color);
+}
+
+.quest-item-card .quest-item-btn.minus:hover {
+    background: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+.quest-item-card .quest-item-count {
+    font-size: 18px;
+    font-weight: 700;
+    min-width: 40px;
+    text-align: center;
+    color: var(--text-primary);
+}
+
+.quest-item-card .quest-item-count.done {
+    color: var(--quest-completed);
+}
+
+.quest-item-card.complete .quest-item-name {
+    text-decoration: line-through;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .quest-item-card {
+        padding: 14px 16px;
+    }
+    
+    .quest-item-card .quest-item-header {
+        flex-wrap: wrap;
+    }
+    
+    .quest-item-card .quest-item-controls {
+        justify-content: center;
+        margin-top: 4px;
+    }
+    
+    .quest-item-card .quest-item-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+    }
+    
+    .quest-item-card .quest-item-count {
+        font-size: 16px;
+        min-width: 30px;
+    }
+}

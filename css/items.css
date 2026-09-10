@@ -1,0 +1,343 @@
+/* ========================================
+   СТИЛИ ДЛЯ СТРАНИЦЫ ПРЕДМЕТОВ
+   ======================================== */
+
+.items-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+}
+
+.items-page-header {
+    margin-bottom: 30px;
+}
+
+.items-page-header h1 {
+    font-size: 32px;
+    color: var(--accent-color);
+    margin-bottom: 8px;
+}
+
+.items-page-header .subtitle {
+    color: var(--text-secondary);
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.items-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    background: var(--bg-card);
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.items-stats strong {
+    color: var(--text-primary);
+}
+
+.btn-clear-items {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+    padding: 6px 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: var(--transition);
+}
+
+.btn-clear-items:hover {
+    background: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+/* Сетка предметов */
+.items-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.item-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.item-card:hover {
+    border-color: var(--accent-color);
+}
+
+.item-card.complete {
+    border-left: 4px solid var(--quest-completed);
+    opacity: 0.7;
+}
+
+.item-card .item-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+    min-width: 200px;
+}
+
+.item-card .item-icon {
+    font-size: 28px;
+}
+
+.item-card .item-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-card .item-name {
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: 16px;
+}
+
+.item-card .item-quest {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.item-card .item-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.item-card .item-controls .item-btn {
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 18px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-card .item-controls .item-btn:hover {
+    background: var(--accent-color);
+    color: var(--bg-primary);
+    border-color: var(--accent-color);
+}
+
+.item-card .item-controls .item-btn.minus:hover {
+    background: #dc3545;
+    border-color: #dc3545;
+    color: white;
+}
+
+.item-card .item-controls .item-count {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    min-width: 50px;
+    text-align: center;
+}
+
+.item-card .item-controls .item-needed {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.item-card.complete .item-name {
+    text-decoration: line-through;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .items-page-header h1 {
+        font-size: 24px;
+    }
+    
+    .item-card {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 16px;
+    }
+    
+    .item-card .item-info {
+        min-width: auto;
+    }
+    
+    .item-card .item-controls {
+        justify-content: center;
+    }
+    
+    .items-stats {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+}
+
+/* ========================================
+   ТРЕКЕР НА ГЛАВНОЙ СТРАНИЦЕ
+   ======================================== */
+.items-tracker {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    border: 1px solid var(--border-color);
+    display: none;
+}
+
+.items-tracker-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.items-tracker-header h3 {
+    color: var(--text-primary);
+    font-size: 18px;
+}
+
+.items-tracker-header .items-progress {
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: var(--bg-primary);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--border-accent);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+.items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.items-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.items-list::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+    border-radius: 10px;
+}
+
+.items-list::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 10px;
+}
+
+.item-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    background: var(--bg-primary);
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.item-row .item-icon {
+    font-size: 20px;
+}
+
+.item-row .item-name {
+    flex: 1;
+    color: var(--text-primary);
+}
+
+.item-row .item-quest {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.item-row .item-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.item-row .item-btn {
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 50%;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-size: 16px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.item-row .item-btn:hover {
+    background: var(--accent-color);
+    color: var(--bg-primary);
+}
+
+.item-row .item-btn.minus:hover {
+    background: #dc3545;
+    color: white;
+}
+
+.item-row .item-count {
+    font-weight: 600;
+    min-width: 40px;
+    text-align: center;
+    color: var(--text-primary);
+}
+
+.item-row.complete {
+    opacity: 0.5;
+}
+
+.item-row.complete .item-name {
+    text-decoration: line-through;
+}
+
+/* Кнопка навигации к предметам */
+.btn-items-nav {
+    padding: 6px 16px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+.btn-items-nav:hover {
+    border-color: var(--accent-color);
+    background: var(--bg-hover);
+}
