@@ -3,7 +3,7 @@
 // ========================================
 
 function renderItemsPage() {
-    const allItems = getAllItemsWithCount();
+    const allItems = getAllItemsWithCount();  // ← теперь возвращает с uniqueKey
     const total = allItems.length;
     const collected = allItems.filter(item => item.count >= item.needed).length;
     
@@ -52,10 +52,10 @@ function renderItemsPage() {
                     </div>
                 </div>
                 <div class="item-controls">
-                    <button class="item-btn minus" data-item="${item.name}">−</button>
+                    <button class="item-btn minus" data-quest="${item.questId}" data-item="${item.name}">−</button>
                     <span class="item-count">${item.count}</span>
                     <span class="item-needed">/ ${item.needed}</span>
-                    <button class="item-btn plus" data-item="${item.name}">+</button>
+                    <button class="item-btn plus" data-quest="${item.questId}" data-item="${item.name}">+</button>
                 </div>
             `;
             grid.appendChild(card);
@@ -66,13 +66,14 @@ function renderItemsPage() {
     grid.querySelectorAll('.item-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
+            const questId = btn.dataset.quest;   // ← теперь берём questId
             const itemName = btn.dataset.item;
             const isPlus = btn.classList.contains('plus');
             
             if (isPlus) {
-                incrementItem(itemName);
+                incrementItem(questId, itemName);   // ← передаём questId
             } else {
-                decrementItem(itemName);
+                decrementItem(questId, itemName);   // ← передаём questId
             }
             
             renderItemsPage();
