@@ -35,7 +35,7 @@ const NPC_DATA = [
             { 
                 id: 'louis_4', 
                 title: 'A Friend In Need', 
-                description: 'Поговорить с Elouise',
+                description: 'Поговорить с Eloise про Little Pierre',
                 page: 'quests/louis/a_friend_in_need.html',
                 items: []  // ← нет предметов
             },
@@ -78,7 +78,7 @@ const NPC_DATA = [
             },
             { 
                 id: 'louis_10', 
-                title: 'The Last Prisioner', 
+                title: 'The Last Prisoner', 
                 description: 'Найти подземелье Jacques Folly и собрать зацепки отца и сестры Луи',
                 page: 'quests/louis/the_last_prisioner.html',
                 items: []  // ← нет предметов
@@ -152,8 +152,8 @@ const NPC_DATA = [
             { 
                 id: 'piro_8', 
                 title: 'Tissue and Blood', 
-                description: 'Найти данж Undercroft',
-                page: 'quests/piro/the_preservers_of_old.html',
+                description: 'Собрать части разных видов Hunger',
+                page: 'quests/piro/tissue_and_blood.html',
                 items: [
                     { name: 'Waif Head', icon: '😀', needed: 10 },
                     { name: 'Dreg Head', icon: '😁', needed: 10 },
@@ -246,7 +246,7 @@ const NPC_DATA = [
                 id: 'eloise_9', 
                 title: 'Crossing The Threshold', 
                 description: 'Поговорить с солдатом на мосте',
-                page: 'quests/eloise/Crossing the Threshold',
+                page: 'quests/eloise/crossing_the_threshold.html',
                 items: []
             },
         ]
@@ -261,21 +261,21 @@ const NPC_DATA = [
                 id: 'reynauld_1', 
                 title: 'Along The Watchtowers', 
                 description: 'Осмотреть 4 башни (сверху иногда появляется уголь для квеста Элуизы)',
-                page: 'reynauld/along_the_watchtowers.html',
+                page: 'quests/reynauld/along_the_watchtowers.html',
                 items: []  // ← нет предметов
             },
             { 
                 id: 'reynauld_2', 
                 title: 'Bearing Arms', 
                 description: 'Найти 10 тяжёлых патронов',
-                page: 'quests/reynauld/the_hidden_cache.html',
+                page: 'quests/reynauld/bearing_arms.html',
                 items: [{ name: 'Heavy Ammunition', icon: '🔫', needed: 10 }]
             },
 
             { 
                 id: 'reynauld_3', 
                 title: 'Call to The Fallen', 
-                description: 'Подудеть в рог на локации Fort Sand Rouge',
+                description: 'Подудеть в рог на локации Fort Sang Rouge',
                 page: 'quests/reynauld/call_to_the_fallen.html',
                 items: []
             },
@@ -312,7 +312,7 @@ const NPC_DATA = [
                 items: []
             },
             { 
-                id: 'reynauld_6', 
+                id: 'reynauld_8', 
                 title: 'The Shako', 
                 description: 'Найти предметы в данже The Pit',
                 page: 'quests/reynauld/the_shako.html',
@@ -412,6 +412,21 @@ const NPC_DATA = [
             },
 
             
+        ]
+    },
+    {
+        id: 'hector',
+        name: 'Hector',
+        faction: '',
+        emoji: '🛡️',
+        quests: [
+            {
+                id: 'hector_1',
+                title: 'A Helping Hand',
+                description: 'Найти людей у ворот Fort Jacques',
+                page: 'quests/hector/a_helping_hand.html',
+                items: []
+            },
         ]
     }
 ];
